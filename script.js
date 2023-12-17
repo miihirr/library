@@ -15,7 +15,7 @@ function Book(title,author,pages,read){
     }
 }
 
-function addBookToLibrary(title,author,pages,read) {
-    const newObj = new Book(title,author,pages,read)
-    myLibrary.push(newObj)
+function addBookToLibrary(newBook) {
+    myLibrary.push(newBook)
 }
+
