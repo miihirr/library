@@ -5,7 +5,7 @@ function Book(title,author,pages,read){
     this.author=author
     this.pages=pages
     this.read=read
-    this.info=function(){
+    this.info= function(){
         if(this.read){
             return `${this.title} by ${this.author}, ${this.pages} pages, already read it`
         }
@@ -18,4 +18,10 @@ function Book(title,author,pages,read){
 function addBookToLibrary(newBook) {
     myLibrary.push(newBook)
 }
+
+function printMyLibrary(){
+    myLibrary.forEach(item=>console.table(item))
+}
+
+
 
