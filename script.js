@@ -7,6 +7,10 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
+Book.prototype.toggle = function () {
+    this.read = !this.read;
+}
+
 function addBookToLibrary() {
     let title = document.querySelector("#title").value;
     let author = document.querySelector("#author").value;
@@ -18,11 +22,40 @@ function addBookToLibrary() {
 }
 
 function printMyLibrary() {
-    myLibrary.forEach(item=>{
-        let newElement=document.createElement("div");
-        newElement.append("item.title");
-    });
+    let display = document.querySelector(".display");
+    display.innerHTML = "";
+    for (let i = 0; i < myLibrary.length; i++) {
+        let newElement = document.createElement("div");
+        newElement.setAttribute("class", "para");
+        newElement.innerHTML = `<p><b>Title :</b> ${myLibrary[i].title}</p>
+        <button class="btn-close" onclick="remove(${i})">&times;</button>
+        <p><b>Author :</b> ${myLibrary[i].author}</p>
+        <p><b>Total Pages :</b> ${myLibrary[i].pages}</p>
+        <button class="btn-read" onclick="toggleThis(${i})">${myLibrary[i].read ? "Read" : "Not Read"}</button>`;
+        display.appendChild(newElement);
+    };
+    let colorRead=document.querySelectorAll(".btn-read");
+    for(let i=0;i<colorRead.length;i++){
+        if(myLibrary[i].read){
+            colorRead[i].style.backgroundColor="rgb(0, 255, 0)";
+        }
+        else{
+            colorRead[i].style.backgroundColor="rgb(255, 94, 94)";
+        }
+    }
 }
+
+function toggleThis(index){
+    myLibrary[index].toggle();
+    printMyLibrary();
+}
+
+function remove(index) {
+    console.log("hi");
+    myLibrary.splice(index, 1);
+    printMyLibrary();
+}
+
 const form = document.querySelector("#infoForm");
 
 const new_btn = document.querySelector(".new");
@@ -37,5 +70,12 @@ form.addEventListener('submit', (event) => {
     addBookToLibrary();
     form.style.display = "none";
 });
+
+const closeBtn=document.querySelector(".closeBtn");
+closeBtn.addEventListener("click",(event)=>{
+    event.preventDefault();
+    form.style.display = "none";
+});
+
 
 
