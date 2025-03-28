@@ -3,6 +3,8 @@
 ## Description
 This project is a simple book library application that allows users to add, remove, and toggle the read status of books. The books are displayed dynamically in the browser, and users can interact with them via buttons.
 
+
+
 ## Screenshot
 ![Library Project Screenshot](screenshot.jpg)
 
